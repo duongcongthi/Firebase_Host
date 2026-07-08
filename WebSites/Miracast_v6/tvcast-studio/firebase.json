@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "../HTML",
+    "public": "HTML",
     "ignore": [
       "**/.*",
       "**/node_modules/**"

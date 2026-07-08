@@ -17,6 +17,8 @@ Site folder layout:
   HTML/privacy.html
   HTML/term.html
   Deploy/site-config.txt
+  firebase.json
+  .firebaserc
 
 The Firebase project id is always the site folder name.
 Website.txt is written only after a successful deploy.
@@ -84,6 +86,8 @@ HTML_DIR="$SITE_DIR_ABS/HTML"
 DEPLOY_DIR="$SITE_DIR_ABS/Deploy"
 CONFIG_FILE="$DEPLOY_DIR/site-config.txt"
 WEBSITE_FILE="$SITE_DIR_ABS/Website.txt"
+FIREBASE_JSON="$SITE_DIR_ABS/firebase.json"
+FIREBASERC="$SITE_DIR_ABS/.firebaserc"
 
 [ -d "$HTML_DIR" ] || fail "Missing HTML folder: $HTML_DIR"
 [ -d "$DEPLOY_DIR" ] || fail "Missing Deploy folder: $DEPLOY_DIR"
@@ -129,10 +133,13 @@ for required_file in contact.html privacy.html term.html; do
   [ -f "$HTML_DIR/$required_file" ] || fail "Missing HTML/$required_file in $SITE_DIR_ABS"
 done
 
-cat > "$DEPLOY_DIR/firebase.json" <<EOF
+rm -f "$DEPLOY_DIR/firebase.json" "$DEPLOY_DIR/.firebaserc"
+rm -rf "$DEPLOY_DIR/public"
+
+cat > "$FIREBASE_JSON" <<EOF
 {
   "hosting": {
-    "public": "../HTML",
+    "public": "HTML",
     "ignore": [
       "**/.*",
       "**/node_modules/**"
@@ -150,7 +157,7 @@ cat > "$DEPLOY_DIR/firebase.json" <<EOF
 }
 EOF
 
-cat > "$DEPLOY_DIR/.firebaserc" <<EOF
+cat > "$FIREBASERC" <<EOF
 {
   "projects": {
     "default": "$PROJECT_ID"
@@ -182,7 +189,7 @@ else
     fi
   fi
 
-  if (cd "$DEPLOY_DIR" && firebase deploy --only hosting --project "$PROJECT_ID"); then
+  if (cd "$SITE_DIR_ABS" && firebase deploy --only hosting --project "$PROJECT_ID"); then
     write_website_file "$WEBSITE_FILE" "$PROJECT_ID"
     printf 'Website.txt written: %s\n' "$WEBSITE_FILE"
   else

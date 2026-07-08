@@ -4,3 +4,4 @@ sites/*/.firebase/
 .DS_Store
 **/.DS_Store
 WebSites/*/*/Deploy/.firebase/
+WebSites/*/*/.firebase/

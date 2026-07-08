@@ -5,129 +5,330 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Use - Smart TV Cast</title>
     <style>
+        :root {
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --surface-soft: #eef4fb;
+            --primary: #1e3a8a;
+            --primary-strong: #172554;
+            --accent: #b45309;
+            --accent-soft: #fff7ed;
+            --text: #0f172a;
+            --muted: #475569;
+            --border: #cbd5e1;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: linear-gradient(180deg, #f8fafc 0%, #edf4fb 100%);
+            min-height: 100vh;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration-color: rgba(30, 58, 138, 0.35);
+            text-underline-offset: 3px;
+        }
+
+        a:hover {
+            color: var(--accent);
+        }
+
+        .page {
+            width: min(980px, calc(100% - 32px));
             margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
+            padding: 28px 0 44px;
         }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 34px;
         }
-        h2 {
-            color: #2980b9;
-            margin-top: 25px;
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary-strong);
+            font-weight: 800;
+            letter-spacing: 0;
         }
-        .container {
-            background-color: white;
-            padding: 30px;
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: grid;
+            place-items: center;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary), #2563eb);
+            box-shadow: 0 10px 22px rgba(30, 58, 138, 0.22);
+            font-size: 18px;
         }
-        .contact-info {
-            background-color: #f0f8ff;
-            padding: 15px;
-            border-left: 4px solid #3498db;
-            margin: 20px 0;
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
-        .last-updated {
-            text-align: right;
-            font-style: italic;
-            color: #7f8c8d;
-            margin-top: 30px;
+
+        .nav a {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 8px 11px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 180ms ease, color 180ms ease;
         }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--primary);
+            background: var(--surface-soft);
+        }
+
+        .hero {
+            margin-bottom: 22px;
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin: 0 0 8px;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--primary-strong);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(34px, 5vw, 56px);
+            line-height: 1.05;
+            letter-spacing: 0;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 14px 0 0;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .document {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(203, 213, 225, 0.82);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: clamp(24px, 5vw, 46px);
+        }
+
+        .meta {
+            display: inline-flex;
+            margin: 0 0 22px;
+            padding: 8px 11px;
+            border-radius: 6px;
+            border: 1px solid rgba(180, 83, 9, 0.24);
+            color: #7c2d12;
+            background: var(--accent-soft);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .meta span {
+            margin-left: 4px;
+        }
+
+        h2 {
+            margin: 30px 0 10px;
+            color: var(--primary);
+            font-size: 22px;
+            line-height: 1.25;
+        }
+
+        p {
+            margin: 0 0 14px;
+            color: var(--muted);
+        }
+
+        ul {
+            margin: 10px 0 22px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        li {
+            position: relative;
+            margin: 10px 0;
+            padding-left: 22px;
+            color: var(--muted);
+        }
+
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.72em;
+            width: 7px;
+            height: 7px;
+            border-radius: 2px;
+            background: var(--accent);
+        }
+
+        strong,
         .highlight {
-            font-weight: bold;
-            color: #2c3e50;
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .contact-info {
+            margin-top: 18px;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(30, 58, 138, 0.16);
+            background: var(--surface-soft);
+        }
+
+        .last-updated {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        @media (max-width: 720px) {
+            .topbar {
+                display: grid;
+                align-items: start;
+            }
+
+            .nav {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Terms of Use for Smart TV Cast</h1>
-        
-        <p>Last Updated: <span id="current-date"></span></p>
-        
-        <p>These Terms of Use ("Terms") govern your use of the Smart TV Cast application (the "App") provided by Smart Mobile Casting Co., Ltd ("we," "our," or "us"). By using the App, you agree to these Terms.</p>
-        
-        <h2>1. License Grant</h2>
-        <p>We grant you a limited, non-exclusive, non-transferable license to use the App for personal, non-commercial purposes on devices you own or control.</p>
-        
-        <h2>2. Restrictions</h2>
-        <p>You agree not to:</p>
-        <ul>
-            <li>Reverse engineer, decompile, or disassemble the App</li>
-            <li>Use the App for any illegal or unauthorized purpose</li>
-            <li>Interfere with or disrupt the App's functionality</li>
-            <li>Circumvent any security or access controls of the App</li>
-            <li>Use the App to transmit harmful or malicious content</li>
-        </ul>
-        
-        <h2>3. Content Responsibility</h2>
-        <p>You are solely responsible for:</p>
-        <ul>
-            <li>Any content you cast or display using the App</li>
-            <li>Ensuring you have proper rights to the content you cast</li>
-            <li>Complying with all applicable laws regarding content transmission</li>
-        </ul>
-        
-        <h2>4. Device Compatibility</h2>
-        <p>The App's functionality depends on your device's capabilities and network environment. We do not guarantee compatibility with all devices or networks.</p>
-        
-        <h2>5. Updates and Changes</h2>
-        <p>We may:</p>
-        <ul>
-            <li>Update the App automatically</li>
-            <li>Modify or discontinue features at any time</li>
-            <li>Change these Terms with notice to users</li>
-        </ul>
-        
-        <h2>6. Disclaimer of Warranties</h2>
-        <p>The App is provided "AS IS" without warranties of any kind. We do not warrant that:</p>
-        <ul>
-            <li>The App will meet all your requirements</li>
-            <li>The App will be uninterrupted or error-free</li>
-            <li>Results from using the App will be accurate or reliable</li>
-        </ul>
-        
-        <h2>7. Limitation of Liability</h2>
-        <p>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, or consequential damages resulting from:</p>
-        <ul>
-            <li>Your use or inability to use the App</li>
-            <li>Unauthorized access to or alteration of your transmissions</li>
-            <li>Any other matter relating to the App</li>
-        </ul>
-        
-        <h2>8. Termination</h2>
-        <p>We may terminate your access to the App at any time without notice if you violate these Terms.</p>
-        
-        <h2>9. Governing Law</h2>
-        <p>These Terms shall be governed by and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions.</p>
-        
-        <h2>10. Contact Information</h2>
-        <div class="contact-info">
-            <p>For any questions about these Terms, please contact us:</p>
-            <p><strong>Company Name:</strong> Smart Mobile Casting Co., Ltd</p>
-            <p><strong>Email:</strong> <a href="mailto:mobilesecure.feedback@gmail.com">mobilesecure.feedback@gmail.com</a></p>
-        </div>
-        
-        <div class="last-updated">
-            <p>By using Smart TV Cast, you acknowledge that you have read and agree to these Terms.</p>
-        </div>
-    </div>
+    <main class="page">
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-mark" aria-hidden="true">TV</div>
+                <span>Smart TV Cast Support</span>
+            </div>
+            <nav class="nav" aria-label="Support pages">
+                <a href="/contact">Contact</a>
+                <a href="/privacy">Privacy</a>
+                <a class="active" href="/term">Terms</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <p class="eyebrow">Terms of use</p>
+            <h1>Terms of Use for Smart TV Cast</h1>
+            <p>These terms explain the rules and responsibilities that apply when using the Smart TV Cast application.</p>
+        </section>
+
+        <article class="document">
+            <p class="meta">Last Updated: <span id="current-date"></span></p>
+
+            <p>These Terms of Use ("Terms") govern your use of the Smart TV Cast application (the "App") provided by TVCast Studio Co,.Ltd ("we," "our," or "us"). By using the App, you agree to these Terms.</p>
+
+            <h2>1. License Grant</h2>
+            <p>We grant you a limited, non-exclusive, non-transferable license to use the App for personal, non-commercial purposes on devices you own or control.</p>
+
+            <h2>2. Restrictions</h2>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Reverse engineer, decompile, or disassemble the App</li>
+                <li>Use the App for any illegal or unauthorized purpose</li>
+                <li>Interfere with or disrupt the App's functionality</li>
+                <li>Circumvent any security or access controls of the App</li>
+                <li>Use the App to transmit harmful or malicious content</li>
+            </ul>
+
+            <h2>3. Content Responsibility</h2>
+            <p>You are solely responsible for:</p>
+            <ul>
+                <li>Any content you cast or display using the App</li>
+                <li>Ensuring you have proper rights to the content you cast</li>
+                <li>Complying with all applicable laws regarding content transmission</li>
+            </ul>
+
+            <h2>4. Device Compatibility</h2>
+            <p>The App's functionality depends on your device's capabilities and network environment. We do not guarantee compatibility with all devices or networks.</p>
+
+            <h2>5. Updates and Changes</h2>
+            <p>We may:</p>
+            <ul>
+                <li>Update the App automatically</li>
+                <li>Modify or discontinue features at any time</li>
+                <li>Change these Terms with notice to users</li>
+            </ul>
+
+            <h2>6. Disclaimer of Warranties</h2>
+            <p>The App is provided "AS IS" without warranties of any kind. We do not warrant that:</p>
+            <ul>
+                <li>The App will meet all your requirements</li>
+                <li>The App will be uninterrupted or error-free</li>
+                <li>Results from using the App will be accurate or reliable</li>
+            </ul>
+
+            <h2>7. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, or consequential damages resulting from:</p>
+            <ul>
+                <li>Your use or inability to use the App</li>
+                <li>Unauthorized access to or alteration of your transmissions</li>
+                <li>Any other matter relating to the App</li>
+            </ul>
+
+            <h2>8. Termination</h2>
+            <p>We may terminate your access to the App at any time without notice if you violate these Terms.</p>
+
+            <h2>9. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions.</p>
+
+            <h2>10. Contact Information</h2>
+            <div class="contact-info">
+                <p>For any questions about these Terms, please contact us:</p>
+                <p><strong>Company Name:</strong> TVCast Studio Co,.Ltd</p>
+                <p><strong>Support URL:</strong> <a href="/contact">https://tvcast-studio.web.app/contact</a></p>
+            </div>
+
+            <div class="last-updated">
+                <p>By using Smart TV Cast, you acknowledge that you have read and agree to these Terms.</p>
+            </div>
+        </article>
+    </main>
 
     <script>
-        // Auto-update the current date
         document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric', 
-            month: 'long', 
+            year: 'numeric',
+            month: 'long',
             day: 'numeric'
         });
     </script>

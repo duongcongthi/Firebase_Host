@@ -7,6 +7,8 @@ TMP_DIR="$(mktemp -d)"
 SITE_DIR="$ROOT_DIR/WebSites/Test_App/demo-support-test"
 HTML_DIR="$SITE_DIR/HTML"
 DEPLOY_DIR="$SITE_DIR/Deploy"
+FIREBASE_JSON="$SITE_DIR/firebase.json"
+FIREBASERC="$SITE_DIR/.firebaserc"
 FAKE_BIN="$TMP_DIR/bin"
 
 trap 'rm -rf "$ROOT_DIR/WebSites/Test_App" "$TMP_DIR"' EXIT
@@ -20,13 +22,16 @@ printf '%s\n' 'ROOT_REDIRECT=/privacy' > "$DEPLOY_DIR/site-config.txt"
 
 DRY_OUTPUT="$("$SCRIPT" "$SITE_DIR" --dry-run)"
 
-test -f "$DEPLOY_DIR/firebase.json"
-test -f "$DEPLOY_DIR/.firebaserc"
+test -f "$FIREBASE_JSON"
+test -f "$FIREBASERC"
 test ! -f "$SITE_DIR/Website.txt"
+test ! -f "$DEPLOY_DIR/firebase.json"
+test ! -f "$DEPLOY_DIR/.firebaserc"
+test ! -d "$DEPLOY_DIR/public"
 
-grep -q '"public": "../HTML"' "$DEPLOY_DIR/firebase.json"
-grep -q '"destination": "/privacy"' "$DEPLOY_DIR/firebase.json"
-grep -q '"default": "demo-support-test"' "$DEPLOY_DIR/.firebaserc"
+grep -q '"public": "HTML"' "$FIREBASE_JSON"
+grep -q '"destination": "/privacy"' "$FIREBASE_JSON"
+grep -q '"default": "demo-support-test"' "$FIREBASERC"
 
 grep -q 'Site folder: '"$SITE_DIR" <<< "$DRY_OUTPUT"
 grep -q 'Project ID: demo-support-test' <<< "$DRY_OUTPUT"
