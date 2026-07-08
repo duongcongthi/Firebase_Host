@@ -1,0 +1,6 @@
+.firebase/
+site-test-output/
+sites/*/.firebase/
+.DS_Store
+**/.DS_Store
+WebSites/*/*/Deploy/.firebase/

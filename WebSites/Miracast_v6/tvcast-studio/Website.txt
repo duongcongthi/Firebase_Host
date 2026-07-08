@@ -1,0 +1,4 @@
+URL Website 
+tvcast-studio.web.app/contact
+tvcast-studio.web.app/term
+tvcast-studio.web.app/privacy

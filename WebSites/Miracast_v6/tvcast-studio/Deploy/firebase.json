@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": "../HTML",
+    "ignore": [
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/contact",
+        "type": 302
+      }
+    ]
+  }
+}
