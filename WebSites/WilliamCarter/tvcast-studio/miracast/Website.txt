@@ -1,0 +1,4 @@
+URL Website 
+Contact URL: https://tvcast-studio.web.app/miracast/contact
+Term URL: https://tvcast-studio.web.app/miracast/term
+Privacy URL: https://tvcast-studio.web.app/miracast/privacy

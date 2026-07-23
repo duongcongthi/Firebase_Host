@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": "../FirebaseHostingPublic",
+    "ignore": [
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/miracast/contact",
+        "type": 302
+      }
+    ]
+  }
+}

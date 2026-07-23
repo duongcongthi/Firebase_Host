@@ -1,0 +1,4 @@
+URL Website 
+Contact URL: https://tvcast-studio.web.app/allsharecast/contact
+Term URL: https://tvcast-studio.web.app/allsharecast/term
+Privacy URL: https://tvcast-studio.web.app/allsharecast/privacy

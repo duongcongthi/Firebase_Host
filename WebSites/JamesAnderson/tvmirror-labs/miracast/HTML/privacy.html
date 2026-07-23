@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Smart TV Mirroring</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-top: #eef7f5;
+            --bg-bottom: #dceee9;
+            --ink: #102a28;
+            --muted: #4a6763;
+            --teal: #0f766e;
+            --teal-deep: #115e59;
+            --teal-soft: #ccfbf1;
+            --line: rgba(15, 118, 110, 0.18);
+            --surface: rgba(255, 255, 255, 0.78);
+            --shadow: 0 24px 50px rgba(16, 42, 40, 0.08);
+            --font-display: "Fraunces", Georgia, serif;
+            --font-body: "Source Sans 3", "Segoe UI", sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: var(--font-body);
+            color: var(--ink);
+            line-height: 1.7;
+            background:
+                radial-gradient(ellipse 80% 50% at 10% -10%, rgba(45, 212, 191, 0.22), transparent 55%),
+                radial-gradient(ellipse 60% 40% at 90% 0%, rgba(15, 118, 110, 0.12), transparent 50%),
+                linear-gradient(165deg, var(--bg-top), var(--bg-bottom));
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.35;
+            background-image:
+                linear-gradient(rgba(15, 118, 110, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 118, 110, 0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(180deg, #000 0%, transparent 85%);
+        }
+
+        a {
+            color: var(--teal);
+            text-underline-offset: 3px;
+        }
+
+        a:hover { color: var(--teal-deep); }
+
+        .page {
+            position: relative;
+            width: min(920px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 28px 0 52px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 36px;
+            animation: rise 520ms ease both;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .brand-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: -0.02em;
+            color: #fff;
+            background: linear-gradient(145deg, #14b8a6, var(--teal-deep));
+            box-shadow: 0 12px 28px rgba(15, 118, 110, 0.28);
+        }
+
+        .brand-text {
+            display: grid;
+            gap: 2px;
+        }
+
+        .brand-text strong {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .brand-text span {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .nav {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border-radius: 999px;
+            transition: background-color 180ms ease, color 180ms ease;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: var(--teal-deep);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero {
+            margin-bottom: 24px;
+            animation: rise 620ms ease both;
+            animation-delay: 60ms;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--teal);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: var(--font-display);
+            font-size: clamp(34px, 5vw, 52px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 14px 0 0;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .document {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            padding: clamp(24px, 5vw, 44px);
+            animation: rise 700ms ease both;
+            animation-delay: 120ms;
+        }
+
+        .meta {
+            display: inline-flex;
+            margin: 0 0 22px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 118, 110, 0.2);
+            color: var(--teal-deep);
+            background: var(--teal-soft);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .meta span { margin-left: 4px; }
+
+        h2 {
+            margin: 30px 0 10px;
+            font-family: var(--font-display);
+            color: var(--teal-deep);
+            font-size: 24px;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+        }
+
+        p {
+            margin: 0 0 14px;
+            color: var(--muted);
+        }
+
+        ul {
+            margin: 10px 0 22px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        li {
+            position: relative;
+            margin: 10px 0;
+            padding-left: 22px;
+            color: var(--muted);
+        }
+
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.72em;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            background: var(--teal);
+        }
+
+        strong { color: var(--ink); }
+
+        .contact-info {
+            margin-top: 18px;
+            padding: 18px 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(15, 118, 110, 0.16);
+            background: var(--teal-soft);
+        }
+
+        .last-updated {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .topbar {
+                display: grid;
+                align-items: start;
+            }
+
+            .nav { justify-content: flex-start; }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                width: min(100% - 24px, 480px);
+                padding: 18px 0 32px;
+            }
+
+            .nav {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 6px;
+            }
+
+            .nav a {
+                text-align: center;
+                padding: 9px 8px;
+                font-size: 13px;
+            }
+
+            .brand-text strong { font-size: 17px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header class="topbar">
+            <a class="brand" href="/miracast/contact">
+                <div class="brand-mark" aria-hidden="true">SM</div>
+                <div class="brand-text">
+                    <strong>Smart TV Mirroring</strong>
+                    <span>Support desk</span>
+                </div>
+            </a>
+            <nav class="nav" aria-label="Support pages">
+                <a href="/miracast/contact">Contact</a>
+                <a class="active" href="/privacy">Privacy</a>
+                <a href="/term">Terms</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <p class="eyebrow">Privacy policy</p>
+            <h1>Privacy Policy for Smart TV Mirroring</h1>
+            <p>TVMirror Labs Co,.Ltd explains how information is handled when you use Smart TV Mirroring.</p>
+        </section>
+
+        <article class="document">
+            <p class="meta">Last Updated: <span id="current-date"></span></p>
+
+            <p>TVMirror Labs Co,.Ltd ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Smart TV Mirroring application (the "App").</p>
+
+            <h2>1. Information We Collect</h2>
+            <p>We may collect certain information when you use our App, including:</p>
+            <ul>
+                <li><strong>Device Information:</strong> We may collect information about the device you use to access our App, including device model, operating system, and unique device identifiers.</li>
+                <li><strong>Usage Data:</strong> We collect data about how you interact with our App, including mirroring preferences and frequently accessed content.</li>
+                <li><strong>Network Information:</strong> To establish connections between devices, we may collect information about your local network configuration.</li>
+            </ul>
+
+            <h2>2. How We Use Your Information</h2>
+            <p>We use the collected information to:</p>
+            <ul>
+                <li>Provide, maintain, and improve our App's functionality</li>
+                <li>Develop new features and services</li>
+                <li>Analyze usage patterns to enhance user experience</li>
+                <li>Troubleshoot technical issues</li>
+                <li>Communicate with you about updates or important notices</li>
+            </ul>
+
+            <h2>3. Data Sharing and Disclosure</h2>
+            <p>We do not sell or rent your personal information to third parties. We may share information in the following limited circumstances:</p>
+            <ul>
+                <li>With service providers who assist in operating our App (under strict confidentiality agreements)</li>
+                <li>When required by law or to respond to legal process</li>
+                <li>To protect the rights or property of our company or users</li>
+            </ul>
+
+            <h2>4. Data Security</h2>
+            <p>We implement appropriate technical and organizational measures to protect your information. However, no method of transmission over the Internet or electronic storage is 100% secure.</p>
+
+            <h2>5. Children's Privacy</h2>
+            <p>Our App is not directed to children under 13. We do not knowingly collect personal information from children under 13.</p>
+
+            <h2>6. Changes to This Privacy Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+
+            <h2>7. Contact Us</h2>
+            <div class="contact-info">
+                <p>If you have any questions about this Privacy Policy, please contact us:</p>
+                <p><strong>Company Name:</strong> TVMirror Labs Co,.Ltd</p>
+                <p><strong>Support URL:</strong> <a href="/miracast/contact">https://tvmirror-labs.web.app/miracast/contact</a></p>
+            </div>
+
+            <div class="last-updated">
+                <p>Thank you for using Smart TV Mirroring.</p>
+            </div>
+        </article>
+    </main>
+
+    <script>
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    </script>
+</body>
+</html>

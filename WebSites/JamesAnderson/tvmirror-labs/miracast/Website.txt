@@ -1,0 +1,4 @@
+URL Website 
+Contact URL: https://tvmirror-labs.web.app/miracast/contact
+Term URL: https://tvmirror-labs.web.app/miracast/term
+Privacy URL: https://tvmirror-labs.web.app/miracast/privacy

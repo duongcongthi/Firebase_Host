@@ -12,7 +12,8 @@ elif [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
 Usage:
   scripts/deploy_all.sh [--dry-run]
 
-Deploys every WebSites/<group>/<site>/ folder that contains Deploy/site-config.txt.
+Deploys every WebSites/<account>/<firebase-host>/<app>/ folder that contains
+Deploy/site-config.txt.
 EOF
   exit 0
 elif [ "${1:-}" != "" ]; then
@@ -21,7 +22,7 @@ elif [ "${1:-}" != "" ]; then
 fi
 
 found=0
-for config in "$ROOT_DIR"/WebSites/*/*/Deploy/site-config.txt; do
+for config in "$ROOT_DIR"/WebSites/*/*/*/Deploy/site-config.txt; do
   [ -f "$config" ] || continue
   found=1
   site_dir="$(cd "$(dirname "$config")/.." && pwd)"

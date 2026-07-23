@@ -5,3 +5,5 @@ sites/*/.firebase/
 **/.DS_Store
 WebSites/*/*/Deploy/.firebase/
 WebSites/*/*/.firebase/
+WebSites/*/*/*/Deploy/.firebase/
+WebSites/*/*/FirebaseHostingPublic/

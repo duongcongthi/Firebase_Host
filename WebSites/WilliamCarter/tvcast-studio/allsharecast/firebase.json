@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": "../FirebaseHostingPublic",
+    "ignore": [
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/allsharecast/contact",
+        "type": 302
+      }
+    ]
+  }
+}

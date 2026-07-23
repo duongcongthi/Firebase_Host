@@ -1,0 +1,4 @@
+URL Website 
+Contact URL: https://tvmirror-labs.web.app/allsharecast/contact
+Term URL: https://tvmirror-labs.web.app/allsharecast/term
+Privacy URL: https://tvmirror-labs.web.app/allsharecast/privacy

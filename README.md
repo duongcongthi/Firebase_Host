@@ -1,147 +1,120 @@
 # Firebase Hosting Helper
 
-Folder này dùng để quản lý nhiều support website Firebase Hosting. Mỗi site nằm trong một folder riêng dưới:
+Folder này quản lý nhiều support website Firebase Hosting. Một Firebase host có thể chứa nhiều app con.
+
+## Cấu Trúc Chuẩn
 
 ```text
-WebSites/<group>/<site-name>/
+WebSites/
+  <account-name>/
+    <firebase-host>/
+      .firebaserc
+      firebase.json
+      FirebaseHostingPublic/
+      <app-name>/
+        HTML/
+          contact.html
+          privacy.html
+          term.html
+        Deploy/
+          site-config.txt
+          deploy.sh
+        firebase.json
+        README.md
+        Website.txt
 ```
 
 Ví dụ hiện tại:
 
 ```text
 WebSites/
-  Miracast_v6/
+  WilliamCarter/
     tvcast-studio/
-      HTML/
-        contact.html
-        privacy.html
-        term.html
-      Deploy/
-        site-config.txt
-        deploy.sh
-      .firebaserc
-      firebase.json
-      README.md
-      Website.txt
+      miracast/
+      allsharecast/
+  JamesAnderson/
+    tvmirror-labs/
+      miracast/
+      allsharecast/
 ```
 
-## File Quan Trọng
+## URL Sau Khi Deploy
 
-- `HTML/contact.html`: trang contact và form feedback.
-- `HTML/privacy.html`: trang privacy policy.
-- `HTML/term.html`: trang terms of use.
-- `Deploy/site-config.txt`: cấu hình redirect trang gốc, thường là `ROOT_REDIRECT=/contact`.
-- `Deploy/deploy.sh`: script deploy nhanh cho đúng site đó.
-- `firebase.json`: nằm ngay dưới folder site, dùng `"public": "HTML"`.
-- `.firebaserc`: Firebase project id, lấy theo tên folder site.
-- `README.md`: ghi chú riêng của từng site.
-- `Website.txt`: tự tạo/cập nhật sau khi deploy thành công.
-
-## Quy Tắc Khi Tạo Site Mới
-
-1. Copy một folder site có sẵn.
-
-```bash
-cp -R WebSites/Miracast_v6/tvcast-studio WebSites/Miracast_v6/tvcast-studio-1
-```
-
-2. Đổi tên folder site thành Firebase project id mới.
-
-Tên folder chỉ nên dùng:
-
-- chữ thường `a-z`
-- số `0-9`
-- dấu gạch ngang `-`
-
-Ví dụ:
+Mỗi app được publish dưới path riêng của cùng host:
 
 ```text
-tvcast-studio
-tvcast-studio-1
-miracast-support
+https://tvcast-studio.web.app/miracast/contact
+https://tvcast-studio.web.app/miracast/term
+https://tvcast-studio.web.app/miracast/privacy
+
+https://tvcast-studio.web.app/allsharecast/contact
+https://tvcast-studio.web.app/allsharecast/term
+https://tvcast-studio.web.app/allsharecast/privacy
 ```
 
-3. Sửa 3 file trong `HTML/`.
-
-Các giá trị thường cần sửa:
-
-- App display name: ví dụ `Smart TV Cast`.
-- Company name: dùng tên site hiển thị + `Co,.Ltd`, ví dụ `TVCast Studio Co,.Ltd`.
-- Hidden feedback app name trong `HTML/contact.html`:
-
-```html
-<input type="hidden" name="App Name" value="Miracast_v6">
-```
-
-- Support URL text nếu đổi host:
+Tương tự với host khác:
 
 ```text
-https://PROJECT_ID.web.app/contact
+https://tvmirror-labs.web.app/miracast/contact
+https://tvmirror-labs.web.app/allsharecast/contact
 ```
 
-4. Sửa `README.md` trong folder site để ghi lại giá trị thật của site đó.
+## Quy Tắc Deploy
 
-## Deploy Một Site
+- Firebase project id lấy theo folder `<firebase-host>`, ví dụ `tvcast-studio`.
+- App path lấy theo folder `<app-name>`, ví dụ `miracast`.
+- File `.firebaserc` đặt ở cấp host: `WebSites/<account>/<firebase-host>/.firebaserc`.
+- Chạy deploy từ một app sẽ build và deploy toàn bộ app cùng host để không xóa nhầm path của app khác.
+- `FirebaseHostingPublic/` là folder public được generate tự động ở cấp host.
+- `Website.txt` chỉ được cập nhật sau khi deploy thật thành công.
+
+## Deploy Một App
 
 Chạy từ root folder này:
 
 ```bash
-scripts/deploy_site.sh WebSites/Miracast_v6/tvcast-studio --dry-run
-scripts/deploy_site.sh WebSites/Miracast_v6/tvcast-studio
+scripts/deploy_site.sh WebSites/WilliamCarter/tvcast-studio/miracast --dry-run
+scripts/deploy_site.sh WebSites/WilliamCarter/tvcast-studio/miracast
 ```
 
-Hoặc chạy từ folder `Deploy` của site:
+Hoặc chạy từ folder `Deploy` của app:
 
 ```bash
-cd WebSites/Miracast_v6/tvcast-studio/Deploy
+cd WebSites/WilliamCarter/tvcast-studio/miracast/Deploy
 ./deploy.sh --dry-run
 ./deploy.sh
 ```
 
-## Deploy Tất Cả Site
+Lưu ý: dù gọi deploy từ `miracast`, script vẫn gom cả các app cùng host như `allsharecast` vào một lần deploy.
+
+## Deploy Tất Cả
 
 ```bash
 scripts/deploy_all.sh --dry-run
 scripts/deploy_all.sh
 ```
 
-## Site Config
+## Tạo App Mới Trong Một Host Có Sẵn
 
-Mỗi site cần có:
+Copy một app folder có sẵn:
 
-```text
-Deploy/site-config.txt
+```bash
+cp -R WebSites/WilliamCarter/tvcast-studio/miracast WebSites/WilliamCarter/tvcast-studio/newapp
 ```
 
-Nội dung tối thiểu:
+Sau đó sửa:
+
+- `HTML/contact.html`
+- `HTML/privacy.html`
+- `HTML/term.html`
+- `Deploy/site-config.txt`
+- `README.md`
+
+`Deploy/site-config.txt` nên trỏ root về contact page của app:
 
 ```text
-ROOT_REDIRECT=/contact
+ROOT_REDIRECT=/newapp/contact
 ```
-
-Project id luôn lấy từ tên folder site:
-
-```text
-WebSites/Miracast_v6/tvcast-studio/   -> https://tvcast-studio.web.app
-WebSites/Miracast_v6/tvcast-studio-1/ -> https://tvcast-studio-1.web.app
-```
-
-## Sau Khi Deploy Thành Công
-
-Script sẽ tự tạo/cập nhật `Website.txt`:
-
-```text
-URL Website 
-PROJECT_ID.web.app/contact
-PROJECT_ID.web.app/term
-PROJECT_ID.web.app/privacy
-```
-
-Script cũng in ra:
-
-- `https://PROJECT_ID.web.app/contact`
-- `https://PROJECT_ID.web.app/privacy`
-- `https://PROJECT_ID.web.app/term`
 
 ## Kiểm Tra Nhanh
 
@@ -150,13 +123,11 @@ bash tests/test_support_html_content.sh
 tests/test_deploy_site.sh
 ```
 
-Lưu ý: `tests/test_support_html_content.sh` hiện kiểm tra riêng site mẫu `tvcast-studio`. Khi tạo site mới, có thể copy test này hoặc sửa biến trong test để kiểm tra site mới.
-
 ## Lưu Ý
 
 - Chỉ sửa file gốc trong `HTML/`.
 - Không sửa `.firebase/`; đây là cache của Firebase CLI.
-- Không sửa `Website.txt` bằng tay; file này do deploy cập nhật.
-- Nếu Firebase báo tên project đã được dùng, đổi tên folder site rồi chạy deploy lại.
+- Không sửa `FirebaseHostingPublic/` bằng tay; folder này do script generate.
+- Không sửa `Website.txt` bằng tay nếu không cần, vì deploy thật sẽ cập nhật lại.
+- Nếu Firebase báo tên project đã được dùng, đổi tên folder host rồi deploy lại.
 - Nếu deploy lỗi, `Website.txt` sẽ không được ghi mới.
-- Email nhận feedback không hiển thị trên UI, nhưng vẫn nằm trong source JS của `contact.html` vì form đang gửi trực tiếp qua FormSubmit.
